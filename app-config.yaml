@@ -103,6 +103,12 @@ catalog:
       rules:
         - allow: [Template]
 
+    # My local example template
+    - type: file
+      target: ../../examples/template/my-template.yaml
+      rules:
+        - allow: [Template]
+
     # Local example organizational data
     - type: file
       target: ../../examples/org.yaml

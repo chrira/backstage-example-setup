@@ -1,0 +1,50 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
+kind: Template
+metadata:
+  name: my-template
+  title: My cool template
+  description: An example template for the scaffolder that creates a simple Node.js service
+spec:
+  owner: user:guest
+  type: service
+
+  # These parameters are used to generate the input form in the frontend, and are
+  # used to gather input data for the execution of the template.
+  parameters:
+    - title: Fill in some steps
+      required:
+        - name
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name of the component
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+        type:
+          title: Type
+          type: string
+          description: Type of the component
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+
+  steps:
+    - action: debug:log
+      id: write-debug-line
+      name: Write "Hello Backstage!" log line
+      input:
+        message: Hello Backstage!
+    - action: debug:wait
+      id: wait-5sec
+      name: Waiting for 5 seconds
+      input:
+        seconds: 5
+    - action: debug:log
+      id: debug_out
+      name: Exercise
+      input:
+        message: "Name is ${{ parameters.name }} with type ${{ parameters.type }}"
+        listWorkspace: true
