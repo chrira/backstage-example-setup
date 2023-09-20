@@ -130,4 +130,15 @@ catalog:
     #   rules:
     #     - allow: [User, Group]
 
+kubernetes:
+  serviceLocatorMethod:
+    type: 'multiTenant'
+  clusterLocatorMethods:
+    - type: 'config'
+      clusters:
+        - url: ${K8S_CONFIG_URL} #cluster API url
+          name: mycluster
+          authProvider: 'serviceAccount'
+          serviceAccountToken: ${K8S_CONFIG_SA_TOKEN} #the token
+          caData: ${K8S_CONFIG_CA_DATA} #CAData for the cluster
 
