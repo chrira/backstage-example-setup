@@ -32,6 +32,19 @@ spec:
             rows: 5
 
   steps:
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:template
+      input:
+        url: ./mycontent
+        values:
+          name: ${{ parameters.name }}
+          type: ${{ parameters.type }}
+    - action: debug:wait
+      id: wait-30sec
+      name: Waiting for 30 seconds
+      input:
+        seconds: 30
     - action: debug:log
       id: write-debug-line
       name: Write "Hello Backstage!" log line
